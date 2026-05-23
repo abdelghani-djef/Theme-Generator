@@ -105,7 +105,6 @@ src/
 | Build | Vite 8 |
 | Styling | TailwindCSS 3, `tailwindcss-animate`, `class-variance-authority`, `tailwind-merge` |
 | Components | shadcn/ui style, built on Radix UI primitives |
-| Routing | React Router v7 |
 | Color picker | `react-colorful` |
 | Toasts | `sonner` |
 | Icons | `lucide-react` |

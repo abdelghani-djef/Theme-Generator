@@ -1,9 +1,23 @@
+import * as React from 'react'
 import { Sparkles } from 'lucide-react'
-import { Outlet } from 'react-router-dom'
 import { ThemeControls } from '@/components/theme/ThemeControls'
-import { NavTabs } from './NavTabs'
+import { DashboardPage } from '@/pages/Dashboard'
+import { LoginPage } from '@/pages/Login'
+import { BlogPage } from '@/pages/Blog'
+import { OrdersPage } from '@/pages/Orders'
+import { NavTabs, type PageId } from './NavTabs'
+
+const PAGES: Record<PageId, React.ComponentType> = {
+  dashboard: DashboardPage,
+  login: LoginPage,
+  blog: BlogPage,
+  orders: OrdersPage,
+}
 
 export function AppShell() {
+  const [page, setPage] = React.useState<PageId>('dashboard')
+  const ActivePage = PAGES[page]
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -31,11 +45,11 @@ export function AppShell() {
                 Real app screens powered entirely by the generated palette.
               </p>
             </div>
-            <NavTabs />
+            <NavTabs value={page} onChange={setPage} />
           </div>
 
           <div className="rounded-xl border bg-background p-4 sm:p-6">
-            <Outlet />
+            <ActivePage />
           </div>
         </section>
       </div>
